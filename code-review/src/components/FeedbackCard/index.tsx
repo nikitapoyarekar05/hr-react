@@ -6,14 +6,14 @@ import Button from "../Button";
 
 import { type AspectName, type AspectData, type Aspect } from "../../Data";
 
-interface FeedbackCardProps {
+interface FeedbackCardProps extends React.HTMLAttributes<HTMLDivElement> {
   aspect: AspectName;
   aspectDetails: AspectData;
   setReviewAspects: React.Dispatch<React.SetStateAction<Aspect>>;
 }
 
 const FeedbackCard = (props: FeedbackCardProps) => {
-  const { aspect, aspectDetails, setReviewAspects } = props;
+  const { aspect, aspectDetails, setReviewAspects, ...rest } = props;
   const { upVotes, downVotes } = aspectDetails;
 
   const handleVote = (voteType: "up" | "down") => {
@@ -33,18 +33,28 @@ const FeedbackCard = (props: FeedbackCardProps) => {
   };
 
   return (
-    <div className={styles.feedbackCard}>
+    <div className={styles.feedbackCard} {...rest}>
       <h3>{aspect.toUpperCase()} </h3>
       <div>
-        <div className={styles.buttonContainer}>
-          <Button id="up-vote" onClick={() => handleVote("up")}>
-            Up vote
-          </Button>
-          <Button id="down-vote" onClick={() => handleVote("down")}>
-            Down vote
-          </Button>
-        </div>
-        <VoteBox upVotes={upVotes} downVotes={downVotes} />
+        <Button
+          id="up-vote"
+          testId="upVote-btn"
+          onClick={() => handleVote("up")}
+        >
+          Up vote
+        </Button>
+        <Button
+          id="down-vote"
+          testId="downVote-btn"
+          onClick={() => handleVote("down")}
+        >
+          Down vote
+        </Button>
+        <VoteBox
+          testId={`test-${aspect}`}
+          upVotes={upVotes}
+          downVotes={downVotes}
+        />
       </div>
     </div>
   );

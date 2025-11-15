@@ -3,12 +3,13 @@ import styles from "./VoteBox.module.css";
 interface VoteBoxProps {
   upVotes: number;
   downVotes: number;
+  testId: string;
 }
 
 const VoteBox = (props: VoteBoxProps) => {
-  const { upVotes, downVotes } = props;
+  const { testId, upVotes, downVotes } = props;
   return (
-    <div className={styles.voteBox}>
+    <div data-testid={testId ?? "btn"} className={styles.voteBox}>
       <strong>
         Upvotes: {upVotes} Downvotes: {downVotes}
       </strong>

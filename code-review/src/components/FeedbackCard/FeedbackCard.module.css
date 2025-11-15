@@ -5,9 +5,3 @@
   background-color: #f9f9f9;
   margin: 8px;
 }
-
-.buttonContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}

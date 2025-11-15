@@ -16,6 +16,7 @@ const FeedbackContainer = () => {
             aspect={typedAspect}
             aspectDetails={reviewAspects[typedAspect]}
             setReviewAspects={setReviewAspects}
+            data-testid={`test-${typedAspect}`}
           />
         );
       })}
